@@ -26,6 +26,7 @@ import Card from "../components/Card";
 const MovieCards = () => {
   const [upcoming, setUpcoming] = useState<MovieResponse>({ results: [] });
   const [first, setFirst] = useState(0);
+
   const baseUrl = "https://api.themoviedb.org/3/movie";
 
   useEffect(() => {

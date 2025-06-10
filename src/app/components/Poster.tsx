@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import { Key, Play } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -31,13 +31,17 @@ const Poster = () => {
         setNowPlaying(data);
       });
   }, []);
-  console.log(nowPlaying);
+  // console.log(nowPlaying);
 
   return (
     <div className="flex overflow-x-scroll overflow-y-clip snap-x w-screen">
       {nowPlaying?.results?.slice(0, 3).map((movie) => {
         return (
-          <Link href={`/movies/${movie.id}`} className="w-screen shrink-0">
+          <Link
+            key={movie.id}
+            href={`/movies/${movie.id}`}
+            className="w-screen shrink-0"
+          >
             <div
               key={movie.id}
               className="h-[900px] w-full bg-center bg-no-repeat flex items-center shrink-0 relative snap-center"

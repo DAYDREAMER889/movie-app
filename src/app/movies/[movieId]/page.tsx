@@ -1,17 +1,12 @@
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 import Footer from "@/app/components/Footer";
 import Navigation from "@/app/components/Navigation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Cards from "@/app/components/Cards";
-import {
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactNode,
-  ReactPortal,
-} from "react";
+import { Key } from "react";
+
 const token =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNjdkOGJlYmQwZjRmZjM0NWY2NTA1Yzk5ZTlkMDI4OSIsIm5iZiI6MTc0MjE3NTA4OS4zODksInN1YiI6IjY3ZDc3YjcxODVkMTM5MjFiNTAxNDE1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KxFMnZppBdHUSz_zB4p9A_gRD16I_R6OX1oiEe0LbE8";
 
@@ -31,11 +26,26 @@ export default async function Page({
     `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
     { headers: { Authorization: `Bearer ${token}` } }
   );
+  const responseData = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
 
   const data = await response.json();
   const datas = await responses.json();
+  const dataResponse = await responseData.json();
 
-  console.log(datas);
+  console.log(dataResponse);
+  const director = dataResponse.crew.find(
+    (member: { job: string }) => member.job === "Director"
+  );
+  const writer = dataResponse.crew.filter(
+    (member: { job: string }) => member.job === "Writer"
+  );
+  const stars = dataResponse.cast.slice(0, 3);
+  console.log("director", director);
+  console.log("writer", writer);
+  console.log("stars", stars);
 
   return (
     <div className="items-center flex gap-8 flex-col">
@@ -58,7 +68,7 @@ export default async function Page({
               <div>
                 <p>
                   <span className="text-[18px] text-[#09090B] font-semibold">
-                    {data?.vote_average}
+                    {data?.vote_average.toFixed(1)}
                   </span>
                   <span className="text-[16px] text-[#71717A]">/10</span>
                 </p>
@@ -102,19 +112,39 @@ export default async function Page({
         <div className="flex gap-1 flex-col">
           <div className="flex gap-[53px]">
             <h2 className="font-bold text-[16px]">Director</h2>
-            <p>Jon M. Chu</p>
+            <p>{director?.name}</p>
           </div>
-          <Separator />
+          <DropdownMenuSeparator className="my-2 h-[1px] bg-[#E4E4E7] " />
           <div className="flex gap-[53px]">
-            <h2 className="font-bold text-[16px] w-16">Writer</h2>
-            <p>Winnie Holzman · Dana Fox · Gregory Maguire</p>
+            <h2 className="font-bold text-[16px] w-16">Writers</h2>
+            <div className="flex  gap-2">
+              {writer?.map(
+                (writer: { id: Key | null | undefined; name: string }) => {
+                  return (
+                    <p key={writer.id} className="text-[16px]">
+                      {writer.name}
+                    </p>
+                  );
+                }
+              )}
+            </div>
           </div>
-          <Separator />
+          <DropdownMenuSeparator className="my-2 h-[1px] bg-[#E4E4E7]" />
           <div className="flex gap-[53px] w-[1080px]">
             <h2 className="font-bold w-16 text-[16px]">Stars</h2>
-            <p>Cynthia Erivo · Ariana Grande · Jeff Goldblum</p>
+            <div className="flex gap-2">
+              {stars?.map(
+                (star: { id: Key | null | undefined; name: string }) => {
+                  return (
+                    <p key={star.id} className="text-[16px]">
+                      {star.name}
+                    </p>
+                  );
+                }
+              )}
+            </div>
           </div>
-          <Separator />
+          <DropdownMenuSeparator className="my-2  h-[1px]  bg-[#E4E4E7]" />
         </div>
       </div>
       <div className="hfit w-[1080px]">
@@ -139,7 +169,7 @@ export default async function Page({
                   poster_path: string | undefined;
                 }) => {
                   return (
-                    <Link href={`/movies/${movie.id}`}>
+                    <Link href={`/movies/${movie.id}`} key={movie.id}>
                       <Cards
                         key={movie.id}
                         title={movie.title}

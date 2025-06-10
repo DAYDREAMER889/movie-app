@@ -68,7 +68,7 @@ export default function Home() {
       <Poster></Poster>
 
       <div className="h-fit w-[1536px]">
-        <div className="flex justify-between items-center px-40">
+        <div className="flex justify-between items-center px-30">
           <p className="text-2xl font-semibold">Upcoming</p>
 
           <Link href={"/upcoming"}>
@@ -95,7 +95,7 @@ export default function Home() {
       </div>
 
       <div className="h-fit w-[1536px]">
-        <div className="flex justify-between items-center px-40">
+        <div className="flex justify-between items-center px-30">
           <p className="text-2xl font-semibold ">Popular </p>
           <Link href={"/popular"}>
             <div className="flex justify-center items-center gap-2">
@@ -121,7 +121,7 @@ export default function Home() {
       </div>
 
       <div className="h-fit w-[1536px]">
-        <div className="flex justify-between items-center px-40">
+        <div className="flex justify-between items-center px-30">
           <p className="text-2xl font-semibold">Top rated </p>
           <Link href={"/top-rated"}>
             <div className="flex justify-center items-center gap-2 ">

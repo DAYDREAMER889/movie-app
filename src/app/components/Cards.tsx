@@ -19,7 +19,7 @@ const Cards = ({
         <div className="flex items-center gap-1 px-3 py-2">
           <img src="/images/star.png" alt="" className="w-4 h-4" />
           <div className="flex items-center">
-            <p className="text-[14px]">{Math.floor(rate / 0.1) / 10}</p>
+            <p className="text-[14px]">{rate.toFixed(1)}</p>
             <p className=" flex items-center text-[12px] text-[#71717A]">/10</p>
           </div>
         </div>

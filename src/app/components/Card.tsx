@@ -15,13 +15,13 @@ const Card = ({
 
   return (
     <Link href={`/movies/${id}`}>
-      <div className="">
+      <div>
         <img
           src={`${imageUrl}${image}`}
           alt=""
-          className=" h-[340px] w-[229px] rounded-md"
+          className=" h-[350px] w-[250px] rounded-md"
         />
-        <div className="flex flex-col rounded-lg bg-[#F4F4F5] w-[229px] h-[96px]">
+        <div className="flex flex-col rounded-lg bg-[#F4F4F5] w-[250px] h-[96px]">
           <div className="flex items-center gap-1 px-3 py-2">
             <img src="/images/star.png" alt="" className="w-4 h-4" />
             <div className="flex items-center">

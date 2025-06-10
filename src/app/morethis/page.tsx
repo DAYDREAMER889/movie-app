@@ -26,25 +26,29 @@ import Card from "../components/Card";
 const MovieCards = () => {
   const [more, setMore] = useState<MovieResponse>({ results: [] });
   const [first, setFirst] = useState(0);
-  const Url = "https://api.themoviedb.org/3/movie";
+  const movieUrl = "https://api.themoviedb.org/3/movie";
+  const id = "https://api.themoviedb.org/3/movie";
 
   useEffect(() => {
-    fetch(`${Url}/similar/1233413/?language=en-US&page=1`, {
+    fetch(`${movieUrl}/similar/${id}/?language=en-US&page=1`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
       .then((data) => {
         setMore(data);
       });
-  }, []);
-  console.log(more);
+  }, []); // Run on mount only
+
+  useEffect(() => {
+    console.log(more); // Will run whenever `more` changes
+  }, [more]);
 
   return (
     <div className="flex flex-col items-center gap-12  ">
       <Navigation />
 
       <div className="h-fit w-[1536px]">
-        <div className="flex justify-between items-center px-40">
+        <div className="flex justify-between items-center container">
           <p className="text-2xl font-semibold">More like this</p>
         </div>
       </div>
