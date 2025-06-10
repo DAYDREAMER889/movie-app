@@ -32,6 +32,7 @@ const Poster = () => {
       });
   }, []);
   // console.log(nowPlaying);
+  const imageUrl = "https://image.tmdb.org/t/p/original";
 
   return (
     <div className="flex overflow-x-scroll overflow-y-clip snap-x w-screen">
@@ -48,7 +49,7 @@ const Poster = () => {
             >
               <img
                 className="absolute flex shrink-0 gap-0 "
-                src={`https:/image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                src={`${imageUrl}${movie.backdrop_path}`}
                 alt={movie.title}
               />
               <div className="flex flex-col  color-[#FFF] absolute px-80">
