@@ -19,10 +19,10 @@ type MovieResponse = {
   results: Movie[];
 };
 
-import Navigation from "./components/Navigation";
-import Card from "./components/Card";
-import Poster from "./components/Poster";
-import Footer from "./components/Footer";
+import Navigation from "../components/Navigation";
+import Card from "../components/Card";
+import Poster from "../components/Poster";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [upcoming, setUpcoming] = useState<MovieResponse>({ results: [] });

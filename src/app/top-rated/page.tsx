@@ -19,9 +19,9 @@ type MovieResponse = {
   results: Movie[];
 };
 
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
-import Card from "../components/Card";
+import Footer from "../../components/Footer";
+import Navigation from "../../components/Navigation";
+import Card from "../../components/Card";
 
 const MovieCards = () => {
   const [topRated, setTopRated] = useState<MovieResponse>({ results: [] });

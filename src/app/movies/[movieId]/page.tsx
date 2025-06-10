@@ -1,10 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
-import Footer from "@/app/components/Footer";
-import Navigation from "@/app/components/Navigation";
+import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Cards from "@/app/components/Cards";
+import Cards from "@/components/Cards";
 import { Key } from "react";
 
 const token =
