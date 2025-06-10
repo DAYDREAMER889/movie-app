@@ -1,4 +1,4 @@
-import { Key, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
