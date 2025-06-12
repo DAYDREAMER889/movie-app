@@ -27,7 +27,6 @@ const MovieCards = () => {
   const [popular, setPopular] = useState<MovieResponse>({ results: [] });
   const [first, setFirst] = useState(0);
   const baseUrl = "https://api.themoviedb.org/3/movie";
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetch(`${baseUrl}/popular?language=en-US&page=1`, {
