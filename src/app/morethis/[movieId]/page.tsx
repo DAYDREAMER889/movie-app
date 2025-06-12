@@ -19,29 +19,31 @@ type MovieResponse = {
   results: Movie[];
 };
 
-import Footer from "../../components/Footer";
-import Navigation from "../../components/Navigation";
-import Card from "../../components/Card";
+import Footer from "../../../components/Footer";
+import Navigation from "../../../components/Navigation";
+import Card from "../../../components/Card";
+import { useParams } from "next/navigation";
 
 const MovieCards = () => {
+  const params = useParams();
+  console.log(params);
+  const movieId = params.movieId;
+  console.log(movieId);
+
   const [more, setMore] = useState<MovieResponse>({ results: [] });
   const [first, setFirst] = useState(0);
   const movieUrl = "https://api.themoviedb.org/3/movie";
-  const id = "https://api.themoviedb.org/3/movie";
+  const idUrl = movieId;
 
   useEffect(() => {
-    fetch(`${movieUrl}/similar/${id}/?language=en-US&page=1`, {
+    fetch(`${movieUrl}/${idUrl}/similar?language=en-US&page=1`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
       .then((data) => {
         setMore(data);
       });
-  }, []); // Run on mount only
-
-  useEffect(() => {
-    console.log(more); // Will run whenever `more` changes
-  }, [more]);
+  }, [idUrl]);
 
   return (
     <div className="flex flex-col items-center gap-12  ">

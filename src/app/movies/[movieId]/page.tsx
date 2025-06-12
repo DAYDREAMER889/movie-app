@@ -150,7 +150,7 @@ export default async function Page({
       <div className="hfit w-[1080px]">
         <div className="flex justify-between items-center">
           <p className="font-semibold h-8 text-[32px]">More like this</p>
-          <Link href={"/morethis"}>
+          <Link href={`/morethis/${movieId}`}>
             <div className="flex justify-center items-center gap-2">
               <p className="text-[14px] font-medium ">See more</p>
               <ArrowRight width={16} height={16} />
